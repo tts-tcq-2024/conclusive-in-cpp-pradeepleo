@@ -1,13 +1,6 @@
 #include <gtest/gtest.h>
 #include "typewise-alert.h"
 
-// Test for inferBreach function
-TEST(TypeWiseAlertTestSuite, InfersBreachAccordingToLimits) {
-    EXPECT_EQ(inferBreach(25, 0, 35), NORMAL);
-    EXPECT_EQ(inferBreach(-1, 0, 35), TOO_LOW);
-    EXPECT_EQ(inferBreach(36, 0, 35), TOO_HIGH);
-}
-
 // Test for getTemperatureLimits function
 TEST(TypeWiseAlertTestSuite, GetTemperatureLimitsReturnsCorrectValues) {
     TemperatureLimits passiveLimits = getTemperatureLimits(PASSIVE_COOLING);
@@ -21,6 +14,14 @@ TEST(TypeWiseAlertTestSuite, GetTemperatureLimitsReturnsCorrectValues) {
     TemperatureLimits medActiveLimits = getTemperatureLimits(MED_ACTIVE_COOLING);
     EXPECT_EQ(medActiveLimits.lowerLimit, 0);
     EXPECT_EQ(medActiveLimits.upperLimit, 40);
+}
+
+
+// Test for checkBreach function
+TEST(TypeWiseAlertTestSuite, InfersBreachAccordingToLimits) {
+    EXPECT_EQ(checkBreach(25, 0, 35), NORMAL);
+    EXPECT_EQ(checkBreach(-1, 0, 35), TOO_LOW);
+    EXPECT_EQ(checkBreach(36, 0, 35), TOO_HIGH);
 }
 
 // Test for classifyTemperatureBreach function
